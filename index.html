@@ -152,36 +152,21 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-8.Java集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/07/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2019/05/07/hello-world/" class="archive-article-date">
-  	<time datetime="2019-05-07T13:23:05.409Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-07</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        <p>Java集合类是一种特别有用的工具类，可用于存储数量不等的对象，并可以实现常用的数据结构，如栈、队列等。<br>Java集合分为四种体系：  </p>
+<ul>
+<li>Set：无序、不可重复的集合；</li>
+<li>List：有序、重复的集合；</li>
+<li>Map：具有映射关系的集合；</li>
+<li>Queue：队列集合</li>
+</ul>
+<h2 id="8-1-Java集合概述"><a href="#8-1-Java集合概述" class="headerlink" title="8.1 Java集合概述"></a>8.1 Java集合概述</h2><p>为了保存数量不定的数据，以及保存具有映射关系的数据，Java提供了集合类。<br>集合类主要负责保存其他数据，因此集合类也被称为容器类。所有的集合类都位于java.util包下</p>
+<h2 id="8-2-Collection和Iterator接口"><a href="#8-2-Collection和Iterator接口" class="headerlink" title="8.2 Collection和Iterator接口"></a>8.2 Collection和Iterator接口</h2><h3 id="8-2-1-使用Lambda表达式遍历集合"><a href="#8-2-1-使用Lambda表达式遍历集合" class="headerlink" title="8.2.1 使用Lambda表达式遍历集合"></a>8.2.1 使用Lambda表达式遍历集合</h3><h3 id="8-2-2-使用Java8增强的Iterator遍历集合元素"><a href="#8-2-2-使用Java8增强的Iterator遍历集合元素" class="headerlink" title="8.2.2 使用Java8增强的Iterator遍历集合元素"></a>8.2.2 使用Java8增强的Iterator遍历集合元素</h3><h3 id="8-2-3-使用Lambda表达式遍历Iterator"><a href="#8-2-3-使用Lambda表达式遍历Iterator" class="headerlink" title="8.2.3 使用Lambda表达式遍历Iterator"></a>8.2.3 使用Lambda表达式遍历Iterator</h3><h3 id="8-2-4-使用foreach循环遍历集合元素"><a href="#8-2-4-使用foreach循环遍历集合元素" class="headerlink" title="8.2.4 使用foreach循环遍历集合元素"></a>8.2.4 使用foreach循环遍历集合元素</h3><h3 id="8-2-5-使用Java8新增的Predicate操作集合"><a href="#8-2-5-使用Java8新增的Predicate操作集合" class="headerlink" title="8.2.5 使用Java8新增的Predicate操作集合"></a>8.2.5 使用Java8新增的Predicate操作集合</h3><h3 id="8-2-6-使用Java8新增的Stream操作集合"><a href="#8-2-6-使用Java8新增的Stream操作集合" class="headerlink" title="8.2.6 使用Java8新增的Stream操作集合"></a>8.2.6 使用Java8新增的Stream操作集合</h3><h2 id="8-3-Set集合"><a href="#8-3-Set集合" class="headerlink" title="8.3 Set集合"></a>8.3 Set集合</h2><h3 id="8-3-1-HashSet类"><a href="#8-3-1-HashSet类" class="headerlink" title="8.3.1 HashSet类"></a>8.3.1 HashSet类</h3><h3 id="8-3-2-LinkedHashSet类"><a href="#8-3-2-LinkedHashSet类" class="headerlink" title="8.3.2 LinkedHashSet类"></a>8.3.2 LinkedHashSet类</h3><h3 id="8-3-3-TreeSet类"><a href="#8-3-3-TreeSet类" class="headerlink" title="8.3.3 TreeSet类"></a>8.3.3 TreeSet类</h3><h3 id="8-3-4-EnumSet类"><a href="#8-3-4-EnumSet类" class="headerlink" title="8.3.4 EnumSet类"></a>8.3.4 EnumSet类</h3><h3 id="8-3-5-各Set实现类的性能分析"><a href="#8-3-5-各Set实现类的性能分析" class="headerlink" title="8.3.5 各Set实现类的性能分析"></a>8.3.5 各Set实现类的性能分析</h3><h2 id="8-4-List集合"><a href="#8-4-List集合" class="headerlink" title="8.4 List集合"></a>8.4 List集合</h2><h3 id="8-4-1-Java8改进的List接口和ListIterator接口"><a href="#8-4-1-Java8改进的List接口和ListIterator接口" class="headerlink" title="8.4.1 Java8改进的List接口和ListIterator接口"></a>8.4.1 Java8改进的List接口和ListIterator接口</h3><h3 id="8-4-2-ArrayList和Vector实现类"><a href="#8-4-2-ArrayList和Vector实现类" class="headerlink" title="8.4.2 ArrayList和Vector实现类"></a>8.4.2 ArrayList和Vector实现类</h3><h3 id="8-4-3-固定长度的List"><a href="#8-4-3-固定长度的List" class="headerlink" title="8.4.3 固定长度的List"></a>8.4.3 固定长度的List</h3><h2 id="8-5-Queue集合"><a href="#8-5-Queue集合" class="headerlink" title="8.5 Queue集合"></a>8.5 Queue集合</h2><h3 id="8-5-1-PriorityQueue实现类"><a href="#8-5-1-PriorityQueue实现类" class="headerlink" title="8.5.1 PriorityQueue实现类"></a>8.5.1 PriorityQueue实现类</h3><h3 id="8-5-2-Deque接口与ArrayDeque实现类"><a href="#8-5-2-Deque接口与ArrayDeque实现类" class="headerlink" title="8.5.2 Deque接口与ArrayDeque实现类"></a>8.5.2 Deque接口与ArrayDeque实现类</h3><h3 id="8-5-3-LinkedList实现类"><a href="#8-5-3-LinkedList实现类" class="headerlink" title="8.5.3 LinkedList实现类"></a>8.5.3 LinkedList实现类</h3><p>###8.5.4 各种线性表的性能分析</p>
+<h2 id="8-6-Java8增强的Map集合"><a href="#8-6-Java8增强的Map集合" class="headerlink" title="8.6 Java8增强的Map集合"></a>8.6 Java8增强的Map集合</h2><h2 id="8-7-HashSet和HashMap的性能选项"><a href="#8-7-HashSet和HashMap的性能选项" class="headerlink" title="8.7 HashSet和HashMap的性能选项"></a>8.7 HashSet和HashMap的性能选项</h2><h2 id="8-8-操作集合的工具类：Collections"><a href="#8-8-操作集合的工具类：Collections" class="headerlink" title="8.8 操作集合的工具类：Collections"></a>8.8 操作集合的工具类：Collections</h2><h3 id="8-8-1-排序操作"><a href="#8-8-1-排序操作" class="headerlink" title="8.8.1 排序操作"></a>8.8.1 排序操作</h3><h3 id="8-8-2-查找、替换操作"><a href="#8-8-2-查找、替换操作" class="headerlink" title="8.8.2 查找、替换操作"></a>8.8.2 查找、替换操作</h3><h3 id="8-8-3-同步控制"><a href="#8-8-3-同步控制" class="headerlink" title="8.8.3 同步控制"></a>8.8.3 同步控制</h3><h3 id="8-8-4-设置不可变集合"><a href="#8-8-4-设置不可变集合" class="headerlink" title="8.8.4 设置不可变集合"></a>8.8.4 设置不可变集合</h3><h2 id="8-9-烦琐的接口：Enumeration"><a href="#8-9-烦琐的接口：Enumeration" class="headerlink" title="8.9 烦琐的接口：Enumeration"></a>8.9 烦琐的接口：Enumeration</h2>
       
 
       
@@ -193,7 +178,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/07/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/05/07/8.Java集合/">展开全文 >></a>
         </p>
       
 
