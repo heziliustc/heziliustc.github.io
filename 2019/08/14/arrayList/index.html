@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>喵家</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="以前，挨批评很难受，别人怎么怼你的，你就怎么怼回去；之后，没有人批评你了，才发现假意的迎合更难受，遮住化脓的伤口，任其腐败、溃烂！">
+  <meta name="description" content="`templateclass arrayListType{public:    const arrayListType&amp;amp; operator=(const arrayListType&amp;amp;);    bool isEmpty();    bool isFull();    int listSize();    int maxListSize();    void print() con">
 <meta property="og:type" content="article">
 <meta property="og:title" content="喵家">
-<meta property="og:url" content="http://yoursite.com/2019/05/10/05.10/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/08/14/arrayList/index.html">
 <meta property="og:site_name" content="喵家">
-<meta property="og:description" content="以前，挨批评很难受，别人怎么怼你的，你就怎么怼回去；之后，没有人批评你了，才发现假意的迎合更难受，遮住化脓的伤口，任其腐败、溃烂！">
+<meta property="og:description" content="`templateclass arrayListType{public:    const arrayListType&amp;amp; operator=(const arrayListType&amp;amp;);    bool isEmpty();    bool isFull();    int listSize();    int maxListSize();    void print() con">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-10T03:02:46.746Z">
+<meta property="og:updated_time" content="2019-08-14T15:44:05.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="喵家">
-<meta name="twitter:description" content="以前，挨批评很难受，别人怎么怼你的，你就怎么怼回去；之后，没有人批评你了，才发现假意的迎合更难受，遮住化脓的伤口，任其腐败、溃烂！">
+<meta name="twitter:description" content="`templateclass arrayListType{public:    const arrayListType&amp;amp; operator=(const arrayListType&amp;amp;);    bool isEmpty();    bool isFull();    int listSize();    int maxListSize();    void print() con">
   
     <link rel="alternative" href="/atom.xml" title="喵家" type="application/atom+xml">
   
@@ -154,12 +154,47 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-05.10" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-arrayList" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>﻿以前，挨批评很难受，别人怎么怼你的，你就怎么怼回去；<br>之后，没有人批评你了，才发现假意的迎合更难受，遮住化脓的伤口，任其腐败、溃烂！</p>
+        <p>﻿<code>`</code><br>template<class elemtype><br>class arrayListType<br>{<br>public:<br>    const arrayListType<elemtype>&amp; operator=(const arrayListType<elemtype>&amp;);<br>    bool isEmpty();<br>    bool isFull();<br>    int listSize();<br>    int maxListSize();<br>    void print() const;<br>    bool isItemAtEqual(int location, const elemType&amp; item);<br>    void insertAt(int location, const elemType&amp; insertItem);<br>    void insertEnd(const elemType&amp; insertItem);<br>    void removeAt(int location);<br>    void retrieveAt(int location, elemType&amp; retItem);<br>    void replaceAt(int location, const elemType&amp; repItem);<br>    void clearList();<br>    int seqSearch(const elemType&amp; item);<br>    void insert(const elemType&amp; insertItem);<br>    void remove(const elemType&amp; removeItem);</elemtype></elemtype></class></p>
+<pre><code>arrayListType(int size = 100);
+arrayListType(const arrayListType&lt;elemType&gt;&amp; otherList);
+~arrayListType();
+</code></pre><p>protected:<br>    elemType *list;<br>    int length;<br>    int maxSize;<br>};</p>
+<p>template<class elemtype><br>bool arrayListType<elemtype>::isEmpty()<br>{<br>    return(length == 0);<br>}</elemtype></class></p>
+<p>template<class elemtype><br>bool arrayListType<elemtype>::isFull()<br>{<br>    return(length == maxSize);<br>}</elemtype></class></p>
+<p>template<class elemtype><br>int arrayListType<elemtype>::listSize()<br>{<br>    return length;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>int arrayListType<elemtype>::maxListSize()<br>{<br>    return maxSize;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::print() const<br>{<br>    for (i = 0; i &lt; length; i++)<br>    {<br>        cout &lt;&lt; list[i] &lt;&lt; “ “;<br>    }<br>    cout &lt;&lt; endl;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>bool arrayListType<elemtype>::isItemAtEqual(int location, const elemType&amp; item)<br>{<br>    return(list[location] == item);<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::insertAt(int location, const elemType&amp; insertItem)<br>{<br>    if (location &lt; 0 || location &gt;= maxSize)<br>        cerr &lt;&lt; “out of range.” &lt;&lt; endl;<br>    else<br>        if (length &gt;= maxSize)<br>            cout &lt;&lt; “full list” &lt;&lt; endl;<br>        else<br>        {<br>            for (int i = length; i &gt; location; i–)<br>                list[i] = list[i - 1];<br>            list[location] = insertItem;<br>            length++;<br>        }<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::insertEnd(const elemType&amp; insertItem)<br>{<br>    if (length &gt;= maxSize)<br>        cerr &lt;&lt; “full list.” &lt;&lt; endl;<br>    else<br>    {<br>        list[length] = insertItem;<br>        length++;<br>    }<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::removeAt(int location)<br>{<br>    if (location &lt; 0 || location &gt;= length)<br>        cerr &lt;&lt; “out of range.” &lt;&lt; endl;<br>    else<br>    {<br>        for (int i = location; i &lt; length; i–)<br>        {<br>            list[i] = list[i + 1];<br>        }<br>        length–;<br>    }<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::retrieveAt(int location, elemType&amp; retItem)<br>{<br>    if (location &lt; 0 || location &gt;= length)<br>        cerr &lt;&lt; “out of range.” &lt;&lt; endl;<br>    else<br>        retItem = list[location];<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::replaceAt(int location, const elemType&amp; repItem)<br>{<br>    if (location &lt; 0 || location &gt;= length)<br>        cerr &lt;&lt; “out of range.” &lt;&lt; endl;<br>    else<br>        list[location] = repItem;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::clearList()<br>{<br>    length = 0;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>arrayListType<elemtype>::arrayListType(int size)<br>{<br>    if (size &lt; 0)<br>    {<br>        cerr &lt;&lt; “must be postive.” &lt;&lt; endl;<br>        size = 100;<br>    }<br>    else<br>        maxSize = size;<br>    length = 0;<br>    list = new elemType[maxSize];<br>    assert(list != NULL);<br>}</elemtype></class></p>
+<p>template<class elemtype><br>arrayListType<elemtype>::~arrayListType()<br>{<br>    delete[] list;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>arrayListType<elemtype>::arrayListType(const arrayListType<elemtype>&amp; otherList)<br>{<br>    maxSize = otherList.maxSize;<br>    length = otherList.length;<br>    list = new elemType[maxSize];<br>    assert(list != NULL);</elemtype></elemtype></class></p>
+<pre><code>for (int j = 0; j &lt; length; j++)
+{
+    list[j] = otherList.list[j];
+}
+</code></pre><p>}</p>
+<p>template<class elemtype><br>const arrayListType<elemtype>&amp; arrayListType<elemtype>::operator=(const arrayListType<elemtype>&amp; otherList)<br>{<br>    if (this != &amp;otherList)<br>    {<br>        delete[] list;<br>        maxSize = otherList.maxSize;<br>        length = otherList.length;<br>        list = new elemType[maxSize];<br>        assert(list != NULL);</elemtype></elemtype></elemtype></class></p>
+<pre><code>    for (int i = 0; i &lt; length; i++)
+    {
+        list[i] = otherList.list[i];
+    }
+    return *this;
+}
+</code></pre><p>}</p>
+<p>template<class elemtype><br>int arrayListType<elemtype>::seqSearch(const elemType&amp; item)<br>{<br>    int loc;<br>    bool found = false;<br>    for (loc = 0; loc &lt; length; loc++)<br>    {<br>        if (list[loc] == item)<br>        {<br>            found = true;<br>            break;<br>        }<br>    }<br>    if (found)<br>        return loc;<br>    else<br>        return -1;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::insert(const elemType&amp; insertItem)<br>{<br>    int loc;<br>    if (length = 0)<br>        list[length++] = insertItem;<br>    else<br>        if (length == maxSize)<br>            cerr &lt;&lt; “full list” &lt;&lt; endl;<br>        else<br>        {<br>            loc = seqSearch(insertItem);<br>            if (loc == -1)<br>                list[length++] = insertItem;<br>            else<br>                cerr &lt;&lt; “already in the list.” &lt;&lt; endl;<br>        }<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::remove(const elemType&amp; removeItem)<br>{<br>    int loc;<br>    if (length == 0)<br>        cerr &lt;&lt; “empty list” &lt;&lt; endl;<br>    else<br>    {<br>        loc=seqSearch(removeItem);<br>        if (loc == -1)<br>            cout &lt; “not in the list.” &lt;&lt; endl;<br>        else<br>            removeAt(loc);<br>    }<br>}<br><code>`</code></elemtype></class></p>
 
       
 
@@ -239,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/10/05.10/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/14/arrayList/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -253,7 +288,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/14/arrayList/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/08/14/linkedListType/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -263,7 +298,7 @@
     </a>
   
   
-    <a href="/2019/05/09/05.09/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/05/10/05.10/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>

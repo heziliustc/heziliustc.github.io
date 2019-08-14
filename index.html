@@ -152,6 +152,460 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-linkedListType" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>#include &lt;iostream&gt;
+#include&lt;assert.h&gt;
+using namespace std;
+
+template&lt;class Type&gt;
+struct nodeType
+{
+    Type info;
+    nodeType&lt;Type&gt; *link;
+};
+
+template&lt;class Type&gt;
+class linkedListType
+{
+    friend ostream&amp; operator&lt;&lt;(ostream&amp;, const linkedListType&lt;Type&gt;&amp;);
+
+public:
+    const linkedListType&lt;Type&gt;&amp; operator=(const linkedListType&lt;Type&gt;&amp;);
+
+    void initializeList();
+
+    bool isEmptyList();
+
+    int length();
+
+    void destroyList();
+
+    Type front();
+
+    Type back();
+
+    bool search(const Type&amp; searchItem);
+
+    void insertFirst(const Type&amp; newItem);
+
+    void insertLast(const Type&amp; newItem);
+
+    void deleteNode(const Type&amp; deleteItem);
+
+    linkedListType();
+
+    linkedListType(const linkedListType&lt;Type&gt;&amp; otherlist);
+
+    ~linkedListType();
+
+protected:
+    int count;
+    nodeType&lt;Type&gt; *first;
+    nodeType&lt;Type&gt; *last;
+
+private:
+    void copyList(const linkedListType&lt;Type&gt;&amp; otherList);
+};
+
+template&lt;class Type&gt;
+nodeType&lt;Type&gt; *buildListForward(Type)
+{
+    nodeType&lt;Type&gt; *first = NULL, *last = NULL, *newNode = NULL;
+    int num;
+
+    cout &lt;&lt; &quot;Enter a list of integers ending with -999.\n&quot;;
+    cin &gt;&gt; num;
+    while (num != -999)
+    {
+        newNode = new nodeType&lt;Type&gt;;
+        assert(newNode != NULL);
+        newNode-&gt;info = num;
+        newNode-&gt;link = NULL;
+
+        if (first == NULL)
+        {
+            first = newNode;
+            last = newNode;
+        }
+        else
+        {
+            last-&gt;link = newNode;
+            last = newNode;
+        }
+        cin &gt;&gt; num;
+    }
+    return first;
+}
+
+template&lt;class Type&gt;
+nodeType&lt;Type&gt; *buildListBackward(Type)
+{
+    nodeType&lt;Type&gt; *first = NULL, *newNode = NULL;
+    int num;
+    cout &lt;&lt; &quot;Enter a list of intergers ends with -999.\n&quot;;
+    cin &gt;&gt; num;
+    while (num != -999)
+    {
+        newNode = new nodeType&lt;Type&gt;;
+        assert(newNode != NULL);
+
+        newNode-&gt;info = num;
+        newNode-&gt;link = first;
+        first = newNode;
+        cin &gt;&gt; num;
+    }
+    return first;
+}
+
+template&lt;class Type&gt;
+linkedListType&lt;Type&gt;::linkedListType()
+{
+    first = NULL;
+    last = NULL;
+    count = 0;
+}
+
+template&lt;class Type&gt;
+void linkedListType&lt;Type&gt;::destroyList()
+{
+    nodeType&lt;Type&gt; *temp;
+    while (first != NULL)
+    {
+        temp = first;
+        first = first-&gt;link;
+        delete temp;
+    }
+    last = NULL;
+    count = 0;
+}
+
+template&lt;class Type&gt;
+void linkedListType&lt;Type&gt;::initializeList()
+{
+    destroyList();
+}
+
+template&lt;class Type&gt;
+ostream&amp; operator&lt;&lt;(ostream&amp; osObject, const linkedListType&lt;Type&gt;&amp; list)
+{
+    nodeType&lt;Type&gt; *current = NULL;
+    current = list.first;
+    while (current != NULL)
+    {
+        osObject &lt;&lt; current-&gt;info &lt;&lt; &quot; &quot;;
+        current = current-&gt;link;
+    }
+    return osObject;
+}
+
+template&lt;class Type&gt;
+int linkedListType&lt;Type&gt;::length()
+{
+    return count;
+}
+
+template&lt;class Type&gt;
+Type linkedListType&lt;Type&gt;::front()
+{
+    assert(last != NULL);
+    return first-&gt;info;
+}
+
+template&lt;class Type&gt;
+Type linkedListType&lt;Type&gt;::back()
+{
+    assert(last != NULL);
+    return last-&gt;info;
+}
+
+template&lt;class Type&gt;
+bool linkedListType&lt;Type&gt;::search(const Type&amp; searchItem)
+{
+    nodeType&lt;Type&gt; *current = NULL;
+    current = first;
+    bool find;
+    find = false;
+    while (current != NULL &amp;&amp; find != false)
+    {
+        if (current-&gt;info == searchItem)
+            find = true;
+        else
+            current = current-&gt;link;
+    }
+    return find;
+}
+
+template&lt;class Type&gt;
+void linkedListType&lt;Type&gt;::insertFirst(const Type&amp; newItem)
+{
+    nodeType&lt;Type&gt;* newNode = new nodeType&lt;Type&gt;;
+    assert(newNode != NULL);
+    newNode-&gt;info = newItem;
+    newNode-&gt;link = first;
+    first = newNode;
+    count++;
+    if (last == NULL)
+        last = newNode;
+}
+
+template&lt;class Type&gt;
+void linkedListType&lt;Type&gt;::insertLast(const Type&amp; newItem)
+{
+    nodeType&lt;Type&gt;* newNode = new nodeType&lt;Type&gt;;
+    assert(newNode != NULL);
+    newNode-&gt;info = newItem;
+    newNode-&gt;link = NULL;
+    if (first == NULL)
+    {
+        first = newNode;
+        last = newNode;
+        count++;
+    }
+    else
+    {
+        last-&gt;link = newNode;
+        last = newNode;
+        count++;
+    }
+
+}
+
+template&lt;class Type&gt;
+void linkedListType&lt;Type&gt;::deleteNode(const Type&amp; deleteItem)
+{
+    nodeType&lt;Type&gt;* current = NULL;
+    nodeType&lt;Type&gt;* trailCurrent = NULL;
+    bool find;
+
+    if (first == NULL)
+        cerr &lt;&lt; &quot;Cannot delete from an empty list.\n&quot;;
+    else
+    {
+        if (first-&gt;info == deleteItem)
+        {
+            current = first;
+            first = first-&gt;link;
+            count--;
+            if (first = NULL)
+                last = NULL;
+            delete current;
+        }
+        else
+        {
+            find = false;
+            trailCurrent = first;
+            current = first-&gt;link;
+            while (current != NULL &amp;&amp; !find)
+            {
+                if (current-&gt;info != deleteItem)
+                {
+                    trailCurrent = current;
+                    current = current-&gt;link;
+                }
+                else
+                {
+                    find = true;
+                }
+            }
+            if (find)
+            {
+                trailCurrent-&gt;link = current-&gt;link;
+                count--;
+                if (last == current)
+                    last = trailCurrent;
+                delete current;
+            }
+            else
+                cout &lt;&lt; &quot;Item to be deleted is not in the list.&quot; &lt;&lt; endl;
+        }
+    }
+}
+
+template&lt;class Type&gt;
+void linkedListType&lt;Type&gt;::copyList(const linkedListType&lt;Type&gt;&amp; otherList)
+{
+    nodeType&lt;Type&gt; *newNode = NULL, *current = NULL;
+    if (first != NULL)
+        destroyList();
+    if (otherList.first == NULL)
+    {
+        first = NULL;
+        last = NULL;
+        count = 0;
+    }
+    else
+    {
+        current = otherList.first;
+        count = otherList.count;
+        first = new nodeType&lt;Type&gt;;
+        assert(first != NULL);
+
+        first-&gt;info = current-&gt;info;
+        first-&gt;link = NULL;
+        last = first;
+        current = current-&gt;link;
+        while (current != NULL)
+        {
+            newNode = new nodeType&lt;Type&gt;;
+            assert(newNode != NULL);
+            newNode-&gt;info = current-&gt;info;
+            newNode-&gt;link = NULL;
+            last-&gt;link = newNode;
+            last = newNode;
+            current = current-&gt;link;
+        }
+    }
+}
+
+template&lt;class Type&gt;
+linkedListType&lt;Type&gt;::~linkedListType()
+{
+    destroyList();
+}
+
+template&lt;class Type&gt;
+linkedListType&lt;Type&gt;::linkedListType(const linkedListType&lt;Type&gt;&amp; otherList)
+{
+    first = NULL;
+    copyList(otherList);
+}
+
+template&lt;class Type&gt;
+const linkedListType&lt;Type&gt;&amp; linkedListType&lt;Type&gt;::operator=(const linkedListType&lt;Type&gt;&amp; otherList)
+{
+    if (this != &amp;otherList)
+        copyList(otherList);
+    return *this;
+}
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/14/linkedListType/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-arrayList" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>﻿<code>`</code><br>template<class elemtype><br>class arrayListType<br>{<br>public:<br>    const arrayListType<elemtype>&amp; operator=(const arrayListType<elemtype>&amp;);<br>    bool isEmpty();<br>    bool isFull();<br>    int listSize();<br>    int maxListSize();<br>    void print() const;<br>    bool isItemAtEqual(int location, const elemType&amp; item);<br>    void insertAt(int location, const elemType&amp; insertItem);<br>    void insertEnd(const elemType&amp; insertItem);<br>    void removeAt(int location);<br>    void retrieveAt(int location, elemType&amp; retItem);<br>    void replaceAt(int location, const elemType&amp; repItem);<br>    void clearList();<br>    int seqSearch(const elemType&amp; item);<br>    void insert(const elemType&amp; insertItem);<br>    void remove(const elemType&amp; removeItem);</elemtype></elemtype></class></p>
+<pre><code>arrayListType(int size = 100);
+arrayListType(const arrayListType&lt;elemType&gt;&amp; otherList);
+~arrayListType();
+</code></pre><p>protected:<br>    elemType *list;<br>    int length;<br>    int maxSize;<br>};</p>
+<p>template<class elemtype><br>bool arrayListType<elemtype>::isEmpty()<br>{<br>    return(length == 0);<br>}</elemtype></class></p>
+<p>template<class elemtype><br>bool arrayListType<elemtype>::isFull()<br>{<br>    return(length == maxSize);<br>}</elemtype></class></p>
+<p>template<class elemtype><br>int arrayListType<elemtype>::listSize()<br>{<br>    return length;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>int arrayListType<elemtype>::maxListSize()<br>{<br>    return maxSize;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::print() const<br>{<br>    for (i = 0; i &lt; length; i++)<br>    {<br>        cout &lt;&lt; list[i] &lt;&lt; “ “;<br>    }<br>    cout &lt;&lt; endl;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>bool arrayListType<elemtype>::isItemAtEqual(int location, const elemType&amp; item)<br>{<br>    return(list[location] == item);<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::insertAt(int location, const elemType&amp; insertItem)<br>{<br>    if (location &lt; 0 || location &gt;= maxSize)<br>        cerr &lt;&lt; “out of range.” &lt;&lt; endl;<br>    else<br>        if (length &gt;= maxSize)<br>            cout &lt;&lt; “full list” &lt;&lt; endl;<br>        else<br>        {<br>            for (int i = length; i &gt; location; i–)<br>                list[i] = list[i - 1];<br>            list[location] = insertItem;<br>            length++;<br>        }<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::insertEnd(const elemType&amp; insertItem)<br>{<br>    if (length &gt;= maxSize)<br>        cerr &lt;&lt; “full list.” &lt;&lt; endl;<br>    else<br>    {<br>        list[length] = insertItem;<br>        length++;<br>    }<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::removeAt(int location)<br>{<br>    if (location &lt; 0 || location &gt;= length)<br>        cerr &lt;&lt; “out of range.” &lt;&lt; endl;<br>    else<br>    {<br>        for (int i = location; i &lt; length; i–)<br>        {<br>            list[i] = list[i + 1];<br>        }<br>        length–;<br>    }<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::retrieveAt(int location, elemType&amp; retItem)<br>{<br>    if (location &lt; 0 || location &gt;= length)<br>        cerr &lt;&lt; “out of range.” &lt;&lt; endl;<br>    else<br>        retItem = list[location];<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::replaceAt(int location, const elemType&amp; repItem)<br>{<br>    if (location &lt; 0 || location &gt;= length)<br>        cerr &lt;&lt; “out of range.” &lt;&lt; endl;<br>    else<br>        list[location] = repItem;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::clearList()<br>{<br>    length = 0;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>arrayListType<elemtype>::arrayListType(int size)<br>{<br>    if (size &lt; 0)<br>    {<br>        cerr &lt;&lt; “must be postive.” &lt;&lt; endl;<br>        size = 100;<br>    }<br>    else<br>        maxSize = size;<br>    length = 0;<br>    list = new elemType[maxSize];<br>    assert(list != NULL);<br>}</elemtype></class></p>
+<p>template<class elemtype><br>arrayListType<elemtype>::~arrayListType()<br>{<br>    delete[] list;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>arrayListType<elemtype>::arrayListType(const arrayListType<elemtype>&amp; otherList)<br>{<br>    maxSize = otherList.maxSize;<br>    length = otherList.length;<br>    list = new elemType[maxSize];<br>    assert(list != NULL);</elemtype></elemtype></class></p>
+<pre><code>for (int j = 0; j &lt; length; j++)
+{
+    list[j] = otherList.list[j];
+}
+</code></pre><p>}</p>
+<p>template<class elemtype><br>const arrayListType<elemtype>&amp; arrayListType<elemtype>::operator=(const arrayListType<elemtype>&amp; otherList)<br>{<br>    if (this != &amp;otherList)<br>    {<br>        delete[] list;<br>        maxSize = otherList.maxSize;<br>        length = otherList.length;<br>        list = new elemType[maxSize];<br>        assert(list != NULL);</elemtype></elemtype></elemtype></class></p>
+<pre><code>    for (int i = 0; i &lt; length; i++)
+    {
+        list[i] = otherList.list[i];
+    }
+    return *this;
+}
+</code></pre><p>}</p>
+<p>template<class elemtype><br>int arrayListType<elemtype>::seqSearch(const elemType&amp; item)<br>{<br>    int loc;<br>    bool found = false;<br>    for (loc = 0; loc &lt; length; loc++)<br>    {<br>        if (list[loc] == item)<br>        {<br>            found = true;<br>            break;<br>        }<br>    }<br>    if (found)<br>        return loc;<br>    else<br>        return -1;<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::insert(const elemType&amp; insertItem)<br>{<br>    int loc;<br>    if (length = 0)<br>        list[length++] = insertItem;<br>    else<br>        if (length == maxSize)<br>            cerr &lt;&lt; “full list” &lt;&lt; endl;<br>        else<br>        {<br>            loc = seqSearch(insertItem);<br>            if (loc == -1)<br>                list[length++] = insertItem;<br>            else<br>                cerr &lt;&lt; “already in the list.” &lt;&lt; endl;<br>        }<br>}</elemtype></class></p>
+<p>template<class elemtype><br>void arrayListType<elemtype>::remove(const elemType&amp; removeItem)<br>{<br>    int loc;<br>    if (length == 0)<br>        cerr &lt;&lt; “empty list” &lt;&lt; endl;<br>    else<br>    {<br>        loc=seqSearch(removeItem);<br>        if (loc == -1)<br>            cout &lt; “not in the list.” &lt;&lt; endl;<br>        else<br>            removeAt(loc);<br>    }<br>}<br><code>`</code></elemtype></class></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/14/arrayList/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-05.10" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

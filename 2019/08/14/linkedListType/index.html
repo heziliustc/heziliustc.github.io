@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>喵家</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="以前，挨批评很难受，别人怎么怼你的，你就怎么怼回去；之后，没有人批评你了，才发现假意的迎合更难受，遮住化脓的伤口，任其腐败、溃烂！">
+  <meta name="description" content="#include &amp;lt;iostream&amp;gt; #include&amp;lt;assert.h&amp;gt; using namespace std;  template&amp;lt;class Type&amp;gt; struct nodeType {     Type info;     nodeType&amp;lt;Type&amp;gt; *link; };  template&amp;lt;class Type&amp;gt; clas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="喵家">
-<meta property="og:url" content="http://yoursite.com/2019/05/10/05.10/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/08/14/linkedListType/index.html">
 <meta property="og:site_name" content="喵家">
-<meta property="og:description" content="以前，挨批评很难受，别人怎么怼你的，你就怎么怼回去；之后，没有人批评你了，才发现假意的迎合更难受，遮住化脓的伤口，任其腐败、溃烂！">
+<meta property="og:description" content="#include &amp;lt;iostream&amp;gt; #include&amp;lt;assert.h&amp;gt; using namespace std;  template&amp;lt;class Type&amp;gt; struct nodeType {     Type info;     nodeType&amp;lt;Type&amp;gt; *link; };  template&amp;lt;class Type&amp;gt; clas">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-10T03:02:46.746Z">
+<meta property="og:updated_time" content="2019-08-14T15:45:29.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="喵家">
-<meta name="twitter:description" content="以前，挨批评很难受，别人怎么怼你的，你就怎么怼回去；之后，没有人批评你了，才发现假意的迎合更难受，遮住化脓的伤口，任其腐败、溃烂！">
+<meta name="twitter:description" content="#include &amp;lt;iostream&amp;gt; #include&amp;lt;assert.h&amp;gt; using namespace std;  template&amp;lt;class Type&amp;gt; struct nodeType {     Type info;     nodeType&amp;lt;Type&amp;gt; *link; };  template&amp;lt;class Type&amp;gt; clas">
   
     <link rel="alternative" href="/atom.xml" title="喵家" type="application/atom+xml">
   
@@ -154,13 +154,336 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-05.10" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-linkedListType" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>﻿以前，挨批评很难受，别人怎么怼你的，你就怎么怼回去；<br>之后，没有人批评你了，才发现假意的迎合更难受，遮住化脓的伤口，任其腐败、溃烂！</p>
+        <pre><code>#include &lt;iostream&gt;
+#include&lt;assert.h&gt;
+using namespace std;
 
+template&lt;class Type&gt;
+struct nodeType
+{
+    Type info;
+    nodeType&lt;Type&gt; *link;
+};
+
+template&lt;class Type&gt;
+class linkedListType
+{
+    friend ostream&amp; operator&lt;&lt;(ostream&amp;, const linkedListType&lt;Type&gt;&amp;);
+
+public:
+    const linkedListType&lt;Type&gt;&amp; operator=(const linkedListType&lt;Type&gt;&amp;);
+
+    void initializeList();
+
+    bool isEmptyList();
+
+    int length();
+
+    void destroyList();
+
+    Type front();
+
+    Type back();
+
+    bool search(const Type&amp; searchItem);
+
+    void insertFirst(const Type&amp; newItem);
+
+    void insertLast(const Type&amp; newItem);
+
+    void deleteNode(const Type&amp; deleteItem);
+
+    linkedListType();
+
+    linkedListType(const linkedListType&lt;Type&gt;&amp; otherlist);
+
+    ~linkedListType();
+
+protected:
+    int count;
+    nodeType&lt;Type&gt; *first;
+    nodeType&lt;Type&gt; *last;
+
+private:
+    void copyList(const linkedListType&lt;Type&gt;&amp; otherList);
+};
+
+template&lt;class Type&gt;
+nodeType&lt;Type&gt; *buildListForward(Type)
+{
+    nodeType&lt;Type&gt; *first = NULL, *last = NULL, *newNode = NULL;
+    int num;
+
+    cout &lt;&lt; &quot;Enter a list of integers ending with -999.\n&quot;;
+    cin &gt;&gt; num;
+    while (num != -999)
+    {
+        newNode = new nodeType&lt;Type&gt;;
+        assert(newNode != NULL);
+        newNode-&gt;info = num;
+        newNode-&gt;link = NULL;
+
+        if (first == NULL)
+        {
+            first = newNode;
+            last = newNode;
+        }
+        else
+        {
+            last-&gt;link = newNode;
+            last = newNode;
+        }
+        cin &gt;&gt; num;
+    }
+    return first;
+}
+
+template&lt;class Type&gt;
+nodeType&lt;Type&gt; *buildListBackward(Type)
+{
+    nodeType&lt;Type&gt; *first = NULL, *newNode = NULL;
+    int num;
+    cout &lt;&lt; &quot;Enter a list of intergers ends with -999.\n&quot;;
+    cin &gt;&gt; num;
+    while (num != -999)
+    {
+        newNode = new nodeType&lt;Type&gt;;
+        assert(newNode != NULL);
+
+        newNode-&gt;info = num;
+        newNode-&gt;link = first;
+        first = newNode;
+        cin &gt;&gt; num;
+    }
+    return first;
+}
+
+template&lt;class Type&gt;
+linkedListType&lt;Type&gt;::linkedListType()
+{
+    first = NULL;
+    last = NULL;
+    count = 0;
+}
+
+template&lt;class Type&gt;
+void linkedListType&lt;Type&gt;::destroyList()
+{
+    nodeType&lt;Type&gt; *temp;
+    while (first != NULL)
+    {
+        temp = first;
+        first = first-&gt;link;
+        delete temp;
+    }
+    last = NULL;
+    count = 0;
+}
+
+template&lt;class Type&gt;
+void linkedListType&lt;Type&gt;::initializeList()
+{
+    destroyList();
+}
+
+template&lt;class Type&gt;
+ostream&amp; operator&lt;&lt;(ostream&amp; osObject, const linkedListType&lt;Type&gt;&amp; list)
+{
+    nodeType&lt;Type&gt; *current = NULL;
+    current = list.first;
+    while (current != NULL)
+    {
+        osObject &lt;&lt; current-&gt;info &lt;&lt; &quot; &quot;;
+        current = current-&gt;link;
+    }
+    return osObject;
+}
+
+template&lt;class Type&gt;
+int linkedListType&lt;Type&gt;::length()
+{
+    return count;
+}
+
+template&lt;class Type&gt;
+Type linkedListType&lt;Type&gt;::front()
+{
+    assert(last != NULL);
+    return first-&gt;info;
+}
+
+template&lt;class Type&gt;
+Type linkedListType&lt;Type&gt;::back()
+{
+    assert(last != NULL);
+    return last-&gt;info;
+}
+
+template&lt;class Type&gt;
+bool linkedListType&lt;Type&gt;::search(const Type&amp; searchItem)
+{
+    nodeType&lt;Type&gt; *current = NULL;
+    current = first;
+    bool find;
+    find = false;
+    while (current != NULL &amp;&amp; find != false)
+    {
+        if (current-&gt;info == searchItem)
+            find = true;
+        else
+            current = current-&gt;link;
+    }
+    return find;
+}
+
+template&lt;class Type&gt;
+void linkedListType&lt;Type&gt;::insertFirst(const Type&amp; newItem)
+{
+    nodeType&lt;Type&gt;* newNode = new nodeType&lt;Type&gt;;
+    assert(newNode != NULL);
+    newNode-&gt;info = newItem;
+    newNode-&gt;link = first;
+    first = newNode;
+    count++;
+    if (last == NULL)
+        last = newNode;
+}
+
+template&lt;class Type&gt;
+void linkedListType&lt;Type&gt;::insertLast(const Type&amp; newItem)
+{
+    nodeType&lt;Type&gt;* newNode = new nodeType&lt;Type&gt;;
+    assert(newNode != NULL);
+    newNode-&gt;info = newItem;
+    newNode-&gt;link = NULL;
+    if (first == NULL)
+    {
+        first = newNode;
+        last = newNode;
+        count++;
+    }
+    else
+    {
+        last-&gt;link = newNode;
+        last = newNode;
+        count++;
+    }
+
+}
+
+template&lt;class Type&gt;
+void linkedListType&lt;Type&gt;::deleteNode(const Type&amp; deleteItem)
+{
+    nodeType&lt;Type&gt;* current = NULL;
+    nodeType&lt;Type&gt;* trailCurrent = NULL;
+    bool find;
+
+    if (first == NULL)
+        cerr &lt;&lt; &quot;Cannot delete from an empty list.\n&quot;;
+    else
+    {
+        if (first-&gt;info == deleteItem)
+        {
+            current = first;
+            first = first-&gt;link;
+            count--;
+            if (first = NULL)
+                last = NULL;
+            delete current;
+        }
+        else
+        {
+            find = false;
+            trailCurrent = first;
+            current = first-&gt;link;
+            while (current != NULL &amp;&amp; !find)
+            {
+                if (current-&gt;info != deleteItem)
+                {
+                    trailCurrent = current;
+                    current = current-&gt;link;
+                }
+                else
+                {
+                    find = true;
+                }
+            }
+            if (find)
+            {
+                trailCurrent-&gt;link = current-&gt;link;
+                count--;
+                if (last == current)
+                    last = trailCurrent;
+                delete current;
+            }
+            else
+                cout &lt;&lt; &quot;Item to be deleted is not in the list.&quot; &lt;&lt; endl;
+        }
+    }
+}
+
+template&lt;class Type&gt;
+void linkedListType&lt;Type&gt;::copyList(const linkedListType&lt;Type&gt;&amp; otherList)
+{
+    nodeType&lt;Type&gt; *newNode = NULL, *current = NULL;
+    if (first != NULL)
+        destroyList();
+    if (otherList.first == NULL)
+    {
+        first = NULL;
+        last = NULL;
+        count = 0;
+    }
+    else
+    {
+        current = otherList.first;
+        count = otherList.count;
+        first = new nodeType&lt;Type&gt;;
+        assert(first != NULL);
+
+        first-&gt;info = current-&gt;info;
+        first-&gt;link = NULL;
+        last = first;
+        current = current-&gt;link;
+        while (current != NULL)
+        {
+            newNode = new nodeType&lt;Type&gt;;
+            assert(newNode != NULL);
+            newNode-&gt;info = current-&gt;info;
+            newNode-&gt;link = NULL;
+            last-&gt;link = newNode;
+            last = newNode;
+            current = current-&gt;link;
+        }
+    }
+}
+
+template&lt;class Type&gt;
+linkedListType&lt;Type&gt;::~linkedListType()
+{
+    destroyList();
+}
+
+template&lt;class Type&gt;
+linkedListType&lt;Type&gt;::linkedListType(const linkedListType&lt;Type&gt;&amp; otherList)
+{
+    first = NULL;
+    copyList(otherList);
+}
+
+template&lt;class Type&gt;
+const linkedListType&lt;Type&gt;&amp; linkedListType&lt;Type&gt;::operator=(const linkedListType&lt;Type&gt;&amp; otherList)
+{
+    if (this != &amp;otherList)
+        copyList(otherList);
+    return *this;
+}
+</code></pre>
       
 
       
@@ -239,7 +562,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/10/05.10/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/14/linkedListType/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -253,17 +576,8 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/14/arrayList/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/05/09/05.09/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/08/14/arrayList/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
